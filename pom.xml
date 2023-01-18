@@ -233,6 +233,18 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.7.1</version>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M7</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <citrus.plaintext.validation.ignore.newline.type>
+                            true
+                        </citrus.plaintext.validation.ignore.newline.type>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
