@@ -50,14 +50,14 @@ public class Camel3RouteTest {
     @Test
     public void testCreate1(@CitrusResource TestActionRunner test) throws Exception {
 
-        test.$(send("camel:sync:direct:create1")
+        test.$(send(create1Endpoint)
                 .fork(true)
                 .message()
                 .type(MessageType.PLAINTEXT)
                 .body("")
         );
 
-        test.$(receive("camel:sync:direct:create1")
+        test.$(receive(create1Endpoint)
                 .timeout(50000)
                 .message()
                 .type(MessageType.PLAINTEXT)
@@ -69,14 +69,14 @@ public class Camel3RouteTest {
     @Test
     public void testCreate12(@CitrusResource TestActionRunner test) throws Exception {
 
-        test.$(send("camel:sync:direct:create1")
+        test.$(send(create1Endpoint)
                 .fork(true)
                 .message()
                 .type(MessageType.PLAINTEXT)
                 .body("Test 2")
         );
 
-        test.$(receive("camel:sync:direct:create1")
+        test.$(receive(create1Endpoint)
                 .timeout(50000)
                 .message()
                 .type(MessageType.PLAINTEXT)
@@ -88,14 +88,14 @@ public class Camel3RouteTest {
     @Test
     public void testCreate2(@CitrusResource TestActionRunner test) throws Exception {
 
-        test.$(send("camel:sync:direct:create2")
+        test.$(send(create2Endpoint)
                 .fork(true)
                 .message()
                 .type(MessageType.PLAINTEXT)
                 .body("")
         );
 
-        test.$(receive("camel:sync:direct:create2")
+        test.$(receive(create2Endpoint)
                 .timeout(50000)
                 .message()
                 .type(MessageType.PLAINTEXT)
@@ -107,14 +107,14 @@ public class Camel3RouteTest {
     @Test
     public void testCreate22(@CitrusResource TestActionRunner test) throws Exception {
 
-        test.$(send("camel:sync:direct:create2")
+        test.$(send(create2Endpoint)
                 .fork(true)
                 .message()
                 .type(MessageType.PLAINTEXT)
                 .body("Test 2")
         );
 
-        test.$(receive("camel:sync:direct:create2")
+        test.$(receive(create2Endpoint)
                 .timeout(50000)
                 .message()
                 .type(MessageType.PLAINTEXT)
