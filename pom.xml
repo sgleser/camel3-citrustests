@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>Camel3Citrus</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>2.7.1</version>
+            <type>pom</type>
+<!--            <scope>import</scope>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+            <version>2.7.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>2.7.1</version>
+            <optional>true</optional>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <version>2.7.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-bom</artifactId>
+            <version>3.18.3</version>
+            <type>pom</type>
+<!--            <scope>import</scope>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test-spring-junit5</artifactId>
+            <version>3.18.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-bom</artifactId>
+            <version>3.3.0</version>
+            <type>pom</type>
+<!--            <scope>import</scope>-->
+        </dependency>
+
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-base</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.7.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-spring-boot-starter</artifactId>
+            <version>3.18.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-mock-starter</artifactId>
+            <version>3.18.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-servlet-starter</artifactId>
+            <version>3.18.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-amqp</artifactId>
+            <version>3.18.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-debug</artifactId>
+            <version>3.18.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-amqp-starter</artifactId>
+            <version>3.18.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-jsonpath-starter</artifactId>
+            <version>3.18.3</version>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-pool</artifactId>
+        </dependency>-->
+
+        <!--<dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.6.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>swagger-ui</artifactId>
+            <version></version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator</artifactId>
+        </dependency>-->
+
+        <!-- Citrus -->
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-api</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-spring</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-junit5</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-camel</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-http</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-ws</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-validation-json</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-validation-xml</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-validation-text</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <!--<repositories>
+
+    </repositories>-->
+
+    <build>
+        <defaultGoal>spring-boot:run</defaultGoal>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-report-maven-plugin</artifactId>
+                <version>3.18.3</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.7.1</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
