@@ -24,7 +24,7 @@ import static com.consol.citrus.actions.ReceiveMessageAction.Builder.receive;
         webEnvironment =  SpringBootTest.WebEnvironment.DEFINED_PORT,
         classes = { Application.class }
 )
-//@ActiveProfiles("test")
+@ActiveProfiles("test")
 @DirtiesContext
 @CitrusSpringSupport
 @CamelSpringBootTest
