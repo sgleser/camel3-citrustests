@@ -7,8 +7,11 @@ import com.consol.citrus.camel.endpoint.CamelSyncEndpoint;
 import com.consol.citrus.junit.jupiter.spring.CitrusSpringSupport;
 import com.consol.citrus.message.MessageType;
 import org.apache.camel.CamelContext;
+import org.apache.camel.Route;
+import org.apache.camel.builder.AdviceWith;
 import org.apache.camel.test.spring.junit5.CamelSpringBootTest;
 import org.example.Application;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +27,7 @@ import static com.consol.citrus.actions.ReceiveMessageAction.Builder.receive;
         webEnvironment =  SpringBootTest.WebEnvironment.DEFINED_PORT,
         classes = { Application.class }
 )
-//@ActiveProfiles("test")
+@ActiveProfiles("test")
 @DirtiesContext
 @CitrusSpringSupport
 @CamelSpringBootTest
@@ -46,18 +49,31 @@ public class Camel3RouteTest {
     @Autowired
     CamelSyncEndpoint create2Endpoint;
 
+    private static boolean routesAreSetup;
+
+    @BeforeEach
+    public void setupRoutesToReturnString() throws Exception {
+        if (routesAreSetup) return;
+        for (Route route: context.getRoutes()) {
+            AdviceWith.adviceWith(context, route.getId(), r-> {
+                r.weaveAddLast().convertBodyTo(String.class);
+            });
+        }
+        routesAreSetup = true;
+    }
+
     @CitrusTest
     @Test
     public void testCreate1(@CitrusResource TestActionRunner test) throws Exception {
 
-        test.$(send(create1Endpoint)
+        test.$(send("camel:sync:direct:create1")
                 .fork(true)
                 .message()
                 .type(MessageType.PLAINTEXT)
                 .body("")
         );
 
-        test.$(receive(create1Endpoint)
+        test.$(receive("camel:sync:direct:create1")
                 .timeout(50000)
                 .message()
                 .type(MessageType.PLAINTEXT)
@@ -69,14 +85,14 @@ public class Camel3RouteTest {
     @Test
     public void testCreate12(@CitrusResource TestActionRunner test) throws Exception {
 
-        test.$(send(create1Endpoint)
+        test.$(send("camel:sync:direct:create1")
                 .fork(true)
                 .message()
                 .type(MessageType.PLAINTEXT)
                 .body("Test 2")
         );
 
-        test.$(receive(create1Endpoint)
+        test.$(receive("camel:sync:direct:create1")
                 .timeout(50000)
                 .message()
                 .type(MessageType.PLAINTEXT)
@@ -88,14 +104,14 @@ public class Camel3RouteTest {
     @Test
     public void testCreate2(@CitrusResource TestActionRunner test) throws Exception {
 
-        test.$(send(create2Endpoint)
+        test.$(send("camel:sync:direct:create2")
                 .fork(true)
                 .message()
                 .type(MessageType.PLAINTEXT)
                 .body("")
         );
 
-        test.$(receive(create2Endpoint)
+        test.$(receive("camel:sync:direct:create2")
                 .timeout(50000)
                 .message()
                 .type(MessageType.PLAINTEXT)
@@ -107,14 +123,14 @@ public class Camel3RouteTest {
     @Test
     public void testCreate22(@CitrusResource TestActionRunner test) throws Exception {
 
-        test.$(send(create2Endpoint)
+        test.$(send("camel:sync:direct:create2")
                 .fork(true)
                 .message()
                 .type(MessageType.PLAINTEXT)
                 .body("Test 2")
         );
 
-        test.$(receive(create2Endpoint)
+        test.$(receive("camel:sync:direct:create2")
                 .timeout(50000)
                 .message()
                 .type(MessageType.PLAINTEXT)
