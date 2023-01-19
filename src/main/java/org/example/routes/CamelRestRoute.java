@@ -21,5 +21,19 @@ public class CamelRestRoute extends RouteBuilder {
                 .consumes("application/json")
                 .produces("application/json")
                 .to("direct:create2");
+
+        rest("/api")
+                .post("/activate1")
+                .id("activate1")
+                .consumes("application/json")
+                .produces("application/json")
+                .to("direct:activate1");
+
+        rest("/api")
+                .post("/activate2")
+                .id("activate2")
+                .consumes("application/json")
+                .produces("application/json")
+                .to("direct:activate2");
     }
 }
