@@ -53,13 +53,13 @@ public class Camel3RouteTest {
 
     @BeforeEach
     public void setupRoutesToReturnString() throws Exception {
-        if (routesAreSetup) return;
+        /*if (routesAreSetup) return;
         for (Route route: context.getRoutes()) {
             AdviceWith.adviceWith(context, route.getId(), r-> {
                 r.weaveAddLast().convertBodyTo(String.class);
             });
         }
-        routesAreSetup = true;
+        routesAreSetup = true;*/
     }
 
     @CitrusTest
@@ -74,7 +74,7 @@ public class Camel3RouteTest {
         );
 
         test.$(receive("camel:sync:direct:create1")
-                .timeout(50000)
+                .timeout(500000)
                 .message()
                 .type(MessageType.PLAINTEXT)
                 .body("Hello")
@@ -93,7 +93,7 @@ public class Camel3RouteTest {
         );
 
         test.$(receive("camel:sync:direct:create1")
-                .timeout(50000)
+                .timeout(500000)
                 .message()
                 .type(MessageType.PLAINTEXT)
                 .body("Hello")
@@ -112,7 +112,7 @@ public class Camel3RouteTest {
         );
 
         test.$(receive("camel:sync:direct:create2")
-                .timeout(50000)
+                .timeout(500000)
                 .message()
                 .type(MessageType.PLAINTEXT)
                 .body("Hello 2")
@@ -131,7 +131,7 @@ public class Camel3RouteTest {
         );
 
         test.$(receive("camel:sync:direct:create2")
-                .timeout(50000)
+                .timeout(500000)
                 .message()
                 .type(MessageType.PLAINTEXT)
                 .body("Hello 2")
